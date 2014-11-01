@@ -1,0 +1,30 @@
+%html
+  %head
+    = stylesheet_link_tag    :application, :media => 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag :application, 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container
+      %nav.navbar.navbar-default{role: 'navigation'}
+        -#// Brand and toggle get grouped for better mobile display
+        %div.navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+          = link_to 'People42', root_url, class: 'navbar-brand'
+
+        -#// Collect the nav links, forms, and other content for toggling
+        %div.collapse.navbar-collapse.navbar-ex1-collapse
+          %ul.nav.navbar-nav
+            %li
+              = link_to 'People', '/people'
+            %li
+              = link_to 'Addresses', '/addresses'
+            %li
+              = link_to 'Countries', '/countries'
+
+
+
+
+      = yield
