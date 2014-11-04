@@ -1,9 +1,9 @@
 = form_for @task, html: { class: "form form-horizontal task" } do |f|
   .form-group
-    = f.label :description, class: 'control-label'
+    = f.label :name, class: 'control-label'
     .controls
-      = f.text_field :description, class: 'form-control', required: true
-    = error_span(@task[:description])
+      = f.text_field :name, class: 'form-control', required: true
+    = error_span(@task[:name])
   .form-group
     = f.label :deadline, class: 'control-label'
     .controls

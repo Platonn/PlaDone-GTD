@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20141104005207) do
   end
 
   create_table "tasks", force: true do |t|
-    t.string   "description"
+    t.string   "name"
     t.boolean  "done"
     t.date     "deadline"
     t.integer  "project_id"

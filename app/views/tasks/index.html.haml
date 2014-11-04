@@ -5,7 +5,7 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:deadline)
       %th= model_class.human_attribute_name(:time_needed)
       %th= model_class.human_attribute_name(:done)
@@ -15,7 +15,7 @@
     - @tasks.each do |task|
       %tr
         %td= link_to task.id, task_path(task)
-        %td= task.description
+        %td= task.name
         %td= task.deadline
         %td= task.time_needed
         %td= task.done
