@@ -69,6 +69,6 @@ class ContextsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def context_params
-      params.require(:context).permit(:name)
+      params.require(:context).permit(:name, :color, :icon)
     end
 end
