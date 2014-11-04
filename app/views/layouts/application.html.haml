@@ -12,18 +12,19 @@
             %span.sr-only Toggle navigation
             %span.icon-bar
             %span.icon-bar
-          = link_to 'People42', root_url, class: 'navbar-brand'
+          = link_to 'PlaDone', root_url, class: 'navbar-brand'
 
         -#// Collect the nav links, forms, and other content for toggling
         %div.collapse.navbar-collapse.navbar-ex1-collapse
           %ul.nav.navbar-nav
             %li
-              = link_to 'People', '/people'
+              = link_to 'Tasks', tasks_path
             %li
-              = link_to 'Addresses', '/addresses'
+              = link_to 'Contexts', contexts_path
             %li
-              = link_to 'Countries', '/countries'
-
+              = link_to 'Projects', projects_path
+            %li
+              = link_to 'Project Categories', project_categories_path
 
 
 

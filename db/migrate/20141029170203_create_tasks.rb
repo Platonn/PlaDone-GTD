@@ -5,6 +5,8 @@ class CreateTasks < ActiveRecord::Migration
       t.boolean :done
       t.date :deadline
 
+      t.integer :project_id
+      
       t.timestamps
     end
   end

@@ -1,0 +1,1 @@
+Tabela posrednia pomiedzy Task i Project. W tej tabeli tez bedzie pozycja zadania w projekcie - numer w kolejnosci wyswietlania.

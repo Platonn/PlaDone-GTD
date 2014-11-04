@@ -10,14 +10,9 @@
       = f.text_field :deadline, class: 'form-control', required: true
     = error_span(@task[:deadline])
   .form-group
-    = f.label :time_needed, class: 'control-label'
-    .controls
-      = f.text_field :time_needed, class: 'form-control', required: true
-    = error_span(@task[:time_needed])
-  .form-group
     = f.label :done, class: 'control-label'
     .controls
-      = f.text_field :done, class: 'form-control', required: true
+      = f.check_box :done, class: 'form-control', required: true
     = error_span(@task[:done])
   .form-group
     = f.label :project_id, class: 'control-label'

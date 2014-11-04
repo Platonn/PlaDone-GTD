@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :contexts
+
+  resources :project_categories
+
   resources :tasks
 
   resources :projects
