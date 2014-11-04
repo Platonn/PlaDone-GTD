@@ -5,6 +5,11 @@
       = f.text_field :name, class: 'form-control', required: true
     = error_span(@project[:name])
   .form-group
+    = f.label :deadline, class: 'control-label'
+    .controls
+      = f.text_field :deadline, class: 'form-control', required: true
+    = error_span(@project[:deadline])
+  .form-group
     = f.label :project_category_id, class: 'control-label'
     .controls
       = f.collection_select :project_category_id, ProjectCategory.all, :id, :name
