@@ -4,5 +4,18 @@
     .controls
       = f.text_field :name, class: 'form-control', required: true
     = error_span(@context[:name])
+  .form-group
+    = f.label :color, class: 'control-label'
+    .controls
+      = f.text_field :color, class: 'form-control', required: true
+    = error_span(@context[:color])
+  .form-group
+    = f.label :icon, class: 'control-label'
+    .controls
+      = f.text_field :icon, class: 'form-control', required: true
+    = error_span(@context[:icon])
+
+
+
   = f.submit nil,class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), contexts_path, :class => 'btn btn-default'
