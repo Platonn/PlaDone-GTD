@@ -42,7 +42,7 @@
             %td= link_to task.id, task_path(task)
             %td= link_to task.name, task_path(task)
             %td= task.deadline
-            %td= task.project.name if task.project.nil? == false
+            %td= link_to(task.project.name, project_path(task.project)) if task.project.nil? == false
             %td= task.done
             %td= task.time_needed
             %td= task.postponed_to.datetime_without_seconds if task.postponed_to.nil? == false

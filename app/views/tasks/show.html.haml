@@ -9,11 +9,11 @@
 %p
   %strong= model_class.human_attribute_name(:deadline) + ':'
   %br
-  = @task.deadline
+  = @task.deadline.datetime_without_seconds if @task.deadline
 %p
   %strong= model_class.human_attribute_name(:project) + ':'
   %br
-  = @task.project.name if @task.project.nil? == false
+  = link_to(@task.project.name, project_path(@task.project)) if @task.project.nil? == false
 %p
   %strong= model_class.human_attribute_name(:time_needed) + ':'
   %br
@@ -29,7 +29,7 @@
 %p
   %strong= model_class.human_attribute_name(:context) + ':'
   %br
-  = @task.context.name if @task.context.nil? == false
+  = link_to(@task.context.name, context_path(@task.context)) if @task.context.nil? == false
 %p
   %strong= model_class.human_attribute_name(:created_at) + ':'
   %br

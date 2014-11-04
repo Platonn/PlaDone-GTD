@@ -9,7 +9,7 @@
 %p
   %strong= model_class.human_attribute_name(:deadline) + ':'
   %br
-  = @project.deadline
+  = @project.deadline.datetime_without_seconds if @project.deadline
 %p
   %strong= model_class.human_attribute_name(:created_at) + ':'
   %br
@@ -39,10 +39,10 @@
           %tr
             %td= link_to task.id, task_path(task)
             %td= link_to task.name, task_path(task)
-            %td= task.deadline
+            %td= task.deadline.datetime_without_seconds if task.deadline.nil? == false
             %td= task.done
             %td= task.time_needed
-            %td= task.context.name if task.context.nil? == false
+            %td= link_to(task.context.name, context_path(task.context)) if task.context.nil? == false
             %td= task.postponed_to.datetime_without_seconds if task.postponed_to.nil? == false
             %td= task.created_at.datetime_without_seconds
             %td
