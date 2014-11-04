@@ -9,7 +9,8 @@
 
 ProjectCategory.create([
     {name: 'Osobiste'},
-    {name: 'Studia'},
+    {name: 'Studia'},,
+    {name: 'Kiedyś/Może'}
                        ])
 
 Project.create([
