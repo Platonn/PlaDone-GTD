@@ -19,5 +19,12 @@
     .controls
       = f.text_field :done, class: 'form-control', required: true
     = error_span(@task[:done])
+  .form-group
+    = f.label :project_id, class: 'control-label'
+    .controls
+      = f.collection_select :project_id, Project.all, :id, :name
+
+
+
   = f.submit nil,class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn btn-default'
