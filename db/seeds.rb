@@ -6,10 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
 ProjectCategory.create([
     {name: 'Osobiste'},
-    {name: 'Studia'}
+    {name: 'Studia'},
                        ])
+
 Project.create([
     {name: 'Zadanie z Ruby on Rails', project_category_id: 2},
     {name: 'Zadanie z PGK', project_category_id: 2},
@@ -23,7 +25,7 @@ Context.create([
     {name: 'Na laptopie'},
     {name: 'Na komputerze'},
     {name: 'Online'},
-    {name: 'Gdziekolwiek'}
+    {name: 'Gdziekolwiek'},
                ])
 
 Task.create([

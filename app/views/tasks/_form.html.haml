@@ -18,7 +18,7 @@
     = f.label :project_id, class: 'control-label'
     .controls
       = f.collection_select :project_id, Project.all, :id, :name
-
+    = error_span(@task[:project_id])
 
 
   = f.submit nil,class: 'btn btn-primary'
