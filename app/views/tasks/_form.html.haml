@@ -19,7 +19,11 @@
     .controls
       = f.collection_select :project_id, Project.all, :id, :name
     = error_span(@task[:project_id])
-
+  .form-group
+    = f.label :context_id, class: 'control-label'
+    .controls
+      = f.collection_select :context_id, ::Context.all, :id, :name
+    = error_span(@task[:context_id])
 
   = f.submit nil,class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn btn-default'
