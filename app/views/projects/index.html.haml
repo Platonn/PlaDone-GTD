@@ -7,6 +7,7 @@
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:deadline)
+      %th= model_class.human_attribute_name(:project_category)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -15,6 +16,7 @@
         %td= link_to project.id, project_path(project)
         %td= link_to project.name, project_path(project)
         %td= project.deadline.datetime_without_seconds if project.deadline.nil? == false
+        %td= link_to(project.project_category.name, project_category_path(project.project_category)) if project.project_category.nil? == false
         %td= project.created_at.datetime_without_seconds
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_path(project), :class => 'btn btn-default btn-xs'

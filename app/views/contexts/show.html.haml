@@ -1,7 +1,8 @@
 - model_class = ::Context
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.titleize
-
+  %h1
+    .label.label-default=t '.title', :default => model_class.model_name.human.titleize
+    = @context.name
 %p
   %strong= model_class.human_attribute_name(:name) + ':'
   %br

@@ -1,12 +1,35 @@
 - model_class = ProjectCategory
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.titleize
+  %h1
+    .label.label-default=t '.title', :default => model_class.model_name.human.titleize
+    = @project_category.name
 
-%p
-  %strong= model_class.human_attribute_name(:name) + ':'
-  %br
-  = @project_category.name
+-### render projects:
+- sub_model_class = Project
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title=t '.title', :default => sub_model_class.model_name.human.pluralize.titleize
+  .panel-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= sub_model_class.human_attribute_name(:id)
+          %th= sub_model_class.human_attribute_name(:name)
+          %th= sub_model_class.human_attribute_name(:deadline)
+          %th= sub_model_class.human_attribute_name(:created_at)
+          %th=t '.actions', :default => t("helpers.actions")
+      %tbody
+        - @project_category.projects.each do |project|
+          %tr
+            %td= link_to project.id, project_path(project)
+            %td= link_to project.name, project_path(project)
+            %td= project.deadline.datetime_without_seconds if project.deadline.nil? == false
+            %td= project.created_at.datetime_without_seconds
+            %td
+              = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_path(project), :class => 'btn btn-default btn-xs'
+              = link_to t('.destroy', :default => t("helpers.links.destroy")), project_path(project), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
 
+    = link_to t('.new', :default => t("helpers.links.new")), new_project_path, :class => 'btn btn-primary'
 
 = link_to t('.back', :default => t("helpers.links.back")), project_categories_path, :class => 'btn btn-default'
 = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_category_path(@project_category), :class => 'btn btn-default'
