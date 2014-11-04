@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :project
-  has_one :context
+  belongs_to :context
 
   validates :name, :presence => true
 end

@@ -7,7 +7,10 @@
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:deadline)
+      %th= model_class.human_attribute_name(:project)
       %th= model_class.human_attribute_name(:done)
+      %th= model_class.human_attribute_name(:time_needed)
+      %th= model_class.human_attribute_name(:context)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -16,8 +19,11 @@
         %td= link_to task.id, task_path(task)
         %td= task.name
         %td= task.deadline
+        %td= task.project.name if task.project.nil? == false
         %td= task.done
-        %td=l task.created_at
+        %td= task.time_needed
+        %td= task.context.name if task.context.nil? == false
+        %td= task.created_at.strftime("%F %H:%M")
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_task_path(task), :class => 'btn btn-default btn-xs'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), task_path(task), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'

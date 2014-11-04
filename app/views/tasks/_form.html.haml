@@ -7,22 +7,27 @@
   .form-group
     = f.label :deadline, class: 'control-label'
     .controls
-      = f.text_field :deadline, class: 'form-control', required: true
+      = f.text_field :deadline, class: 'form-control'
     = error_span(@task[:deadline])
   .form-group
     = f.label :done, class: 'control-label'
     .controls
-      = f.check_box :done, class: 'form-control', required: true
+      = f.check_box :done, class: 'form-control'
     = error_span(@task[:done])
   .form-group
     = f.label :project_id, class: 'control-label'
     .controls
-      = f.collection_select :project_id, Project.all, :id, :name
+      = f.collection_select :project_id, Project.all, :id, :name, {:include_blank => "No value", :required => true }
     = error_span(@task[:project_id])
+  .form-group
+    = f.label :time_needed, class: 'control-label'
+    .controls
+      = f.text_field :time_needed, class: 'form-control'
+    = error_span(@task[:time_needed])
   .form-group
     = f.label :context_id, class: 'control-label'
     .controls
-      = f.collection_select :context_id, ::Context.all, :id, :name
+      = f.collection_select :context_id, ::Context.all, :id, :name, {:include_blank => "No value"}
     = error_span(@task[:context_id])
 
   = f.submit nil,class: 'btn btn-primary'
