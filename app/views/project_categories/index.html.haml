@@ -11,7 +11,7 @@
     - @project_categories.each do |project_category|
       %tr
         %td= link_to project_category.id, project_category_path(project_category)
-        %td= project_category.name
+        %td= link_to project_category.name, project_category_path(project_category)
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_category_path(project_category), :class => 'btn btn-default btn-xs'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), project_category_path(project_category), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'

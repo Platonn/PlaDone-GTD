@@ -13,7 +13,7 @@
     - @projects.each do |project|
       %tr
         %td= link_to project.id, project_path(project)
-        %td= project.name
+        %td= link_to project.name, project_path(project
         %td= project.deadline
         %td= project.created_at.strftime("%F %H:%M")
         %td

@@ -13,7 +13,7 @@
     - @contexts.each do |context|
       %tr
         %td= link_to context.id, context_path(context)
-        %td= context.name
+        %td= link_to context.name, context_path(context)
         %td= context.color
         %td= context.icon
         %td
