@@ -4,7 +4,7 @@ class ProjectCategoriesController < ApplicationController
   # GET /project_categories
   # GET /project_categories.json
   def index
-    @project_categories = ProjectCategory.all
+    @project_categories = ProjectCategory.active
   end
 
   # GET /project_categories/1
@@ -54,7 +54,9 @@ class ProjectCategoriesController < ApplicationController
   # DELETE /project_categories/1
   # DELETE /project_categories/1.json
   def destroy
-    @project_category.destroy
+    ###@project_category.destroy
+    ### Soft delete:
+    @project_category.soft_delete
     respond_to do |format|
       format.html { redirect_to project_categories_url, notice: 'Project category was successfully destroyed.' }
       format.json { head :no_content }

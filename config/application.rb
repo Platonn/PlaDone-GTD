@@ -24,6 +24,7 @@ module PlaDone
 
     ### Require core classes extensions in specified folder:
     Dir[Rails.root.join('lib', 'core_ext', '*.rb')].each {|l| require l}
+    Dir[Rails.root.join('lib', 'modules', '*.rb')].each {|l| require l}
 
   end
 end

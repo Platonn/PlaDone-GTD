@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.active
   end
 
   # GET /tasks/1
@@ -54,7 +54,9 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
-    @task.destroy
+    ###@task.destroy
+    ###Soft delete:
+    @task.soft_delete
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }

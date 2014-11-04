@@ -4,7 +4,7 @@ class ContextsController < ApplicationController
   # GET /contexts
   # GET /contexts.json
   def index
-    @contexts = Context.all
+    @contexts = Context.active
   end
 
   # GET /contexts/1
@@ -54,7 +54,9 @@ class ContextsController < ApplicationController
   # DELETE /contexts/1
   # DELETE /contexts/1.json
   def destroy
-    @context.destroy
+    ###@context.destroy
+    ### soft delete
+    @context.soft_delete
     respond_to do |format|
       format.html { redirect_to contexts_url, notice: 'Context was successfully destroyed.' }
       format.json { head :no_content }
