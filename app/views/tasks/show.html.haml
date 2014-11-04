@@ -23,6 +23,10 @@
   %br
   = @task.done
 %p
+  %strong= model_class.human_attribute_name(:postponed_to) + ':'
+  %br
+  = @task.postponed_to.datetime_without_seconds if @task.postponed_to
+%p
   %strong= model_class.human_attribute_name(:context) + ':'
   %br
   = @task.context.name if @task.context.nil? == false

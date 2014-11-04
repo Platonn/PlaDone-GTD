@@ -11,6 +11,7 @@
       %th= model_class.human_attribute_name(:done)
       %th= model_class.human_attribute_name(:time_needed)
       %th= model_class.human_attribute_name(:context)
+      %th= model_class.human_attribute_name(:postponed_to)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -23,7 +24,8 @@
         %td= task.done
         %td= task.time_needed
         %td= task.context.name if task.context.nil? == false
-        %td= task.created_at.strftime("%F %H:%M")
+        %td= task.postponed_to.datetime_without_seconds if task.postponed_to.nil? == false
+        %td= task.created_at.datetime_without_seconds
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_task_path(task), :class => 'btn btn-default btn-xs'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), task_path(task), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'

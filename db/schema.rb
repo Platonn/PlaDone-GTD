@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104040129) do
+ActiveRecord::Schema.define(version: 20141104045353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +40,14 @@ ActiveRecord::Schema.define(version: 20141104040129) do
 
   create_table "tasks", force: true do |t|
     t.string   "name"
-    t.boolean  "done",        default: false
+    t.boolean  "done",         default: false
     t.date     "deadline"
     t.integer  "project_id"
     t.integer  "context_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "time_needed"
+    t.date     "postponed_to"
   end
 
 end
