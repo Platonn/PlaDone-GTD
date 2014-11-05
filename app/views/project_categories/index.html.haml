@@ -4,13 +4,11 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:name)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @project_categories.each do |project_category|
       %tr
-        %td= link_to project_category.id, project_category_path(project_category)
         %td= link_to project_category.name, project_category_path(project_category)
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_category_path(project_category), :class => 'btn btn-default btn-xs'
