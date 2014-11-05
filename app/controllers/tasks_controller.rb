@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle_done]
+  before_action :get_active_contexts, only: [:new, :edit]
+  before_action :get_active_projects, only: [:new, :edit]
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.active
+    @tasks = Task.active.order(:done).order(:deadline)
   end
 
   # GET /tasks/1
@@ -19,6 +21,21 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+  end
+
+  # GET /tasks/1/done_toggle
+  # GET /tasks/1/done_toggle.json
+  def toggle_done
+    @task.done = !@task.done
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to tasks_path, notice: 'Task was successfully updated.' }
+        format.json { render :show, status: :ok, location: @task }
+      else
+        format.html { redirect_to tasks_path, notice: 'Task was not updated.' }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /tasks
@@ -67,6 +84,14 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
+    end
+
+    def get_active_contexts
+      @active_contexts = ::Context.active
+    end
+
+    def get_active_projects
+      @active_projects = Project.active
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

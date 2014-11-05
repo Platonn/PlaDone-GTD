@@ -26,5 +26,8 @@ module PlaDone
     Dir[Rails.root.join('lib', 'core_ext', '*.rb')].each {|l| require l}
     Dir[Rails.root.join('lib', 'modules', '*.rb')].each {|l| require l}
 
+    ### Generate assets in less:
+    config.app_generators.stylesheet_engine :less
+
   end
 end

@@ -1,3 +1,25 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.done,
+.done a{
+  color: lightgray;
+}
+
+.done a.btn,
+.done .context
+{
+  background-color: white;
+  border-color: lightgray;
+}
+
+.done a.btn:hover,
+.done .context:hover
+{
+  color: gray;
+}
+
+.done-check {
+  text-align: center;
+}
