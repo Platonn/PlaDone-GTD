@@ -15,6 +15,10 @@
   %strong= model_class.human_attribute_name(:project_category) + ':'
   %br
   = link_to(@project.project_category.name, project_category_path(@project.project_category)) if @project.project_category.nil? == false
+%p
+  %strong= model_class.human_attribute_name(:notes) + ':'
+  %br
+  = @project.notes
 
 -### render tasks:
 - sub_model_class = Task
