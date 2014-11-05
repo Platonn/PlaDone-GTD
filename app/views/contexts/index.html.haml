@@ -1,10 +1,9 @@
 - model_class = ::Context
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-%table.table.table-striped
+%table.table
   %thead
     %tr
-      %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:color)
       %th= model_class.human_attribute_name(:icon)
@@ -12,8 +11,10 @@
   %tbody
     - @contexts.each do |context|
       %tr
-        %td= link_to context.id, context_path(context)
-        %td= link_to context.name, context_path(context)
+        %td
+          %a.context-label{style: "background-color: #{context.color}", :href => context_path(context) }
+            %span{class: "glyphicon glyphicon-#{context.icon}"}
+            = context.name
         %td= context.color
         %td= context.icon
         %td

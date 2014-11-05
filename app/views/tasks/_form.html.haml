@@ -17,7 +17,7 @@
   .form-group
     = f.label :project_id, class: 'control-label'
     .controls
-      = f.collection_select :project_id, Project.all, :id, :name, {:include_blank => "No value", :required => true }
+      = f.collection_select :project_id, @active_projects, :id, :name, {:include_blank => "No value", :required => true }
     = error_span(@task[:project_id])
   .form-group
     = f.label :time_needed, class: 'control-label'
@@ -27,7 +27,7 @@
   .form-group
     = f.label :context_id, class: 'control-label'
     .controls
-      = f.collection_select :context_id, ::Context.all, :id, :name, {:include_blank => "No value"}
+      = f.collection_select :context_id, @active_contexts, :id, :name, {:include_blank => "No value"}
     = error_span(@task[:context_id])
 
   = f.submit nil,class: 'btn btn-primary'

@@ -1,3 +1,36 @@
 // Place all the styles related to the Contexts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.context-label{
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid darkgray;
+  color: #222222;
+}
+.context-label:hover {
+  color: #333333;
+  text-decoration: none;
+}
+
+.context-title {
+  display: inline-block;
+  min-width: 10px;
+  padding: 6px 14px;
+  font-weight: bold;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 30px;
+  border: 1px solid darkgray;
+  color:  //#222222;
+}
