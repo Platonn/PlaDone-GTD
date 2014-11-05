@@ -23,10 +23,10 @@ ProjectCategory.create!([
 Task.create!([
   {name: "Przeczytać treść zadania", done: true, deadline: nil, project_id: 1, context_id: 7, time_needed: "15 min", postponed_to: nil, deleted_at: nil},
   {name: "asd", done: false, deadline: nil, project_id: nil, context_id: nil, time_needed: "", postponed_to: nil, deleted_at: "2000-01-01 01:44:39"},
-  {name: "Zaprogramować zadanie", done: false, deadline: nil, project_id: 1, context_id: 5, time_needed: "", postponed_to: nil, deleted_at: "2000-01-01 01:44:52"},
+  {name: "Zaprogramować zadanie", done: false, deadline: nil, project_id: 1, context_id: 11, time_needed: "", postponed_to: nil, deleted_at: "2000-01-01 01:44:52"},
   {name: "Zrobić podstawową aplikację", done: false, deadline: nil, project_id: 1, context_id: 5, time_needed: "4 h", postponed_to: nil, deleted_at: nil},
-  {name: "Dostosować flow usera", done: false, deadline: nil, project_id: 1, context_id: 5, time_needed: "2 h", postponed_to: nil, deleted_at: nil},
-  {name: "Zaprogramować zadanie", done: false, deadline: nil, project_id: 2, context_id: 5, time_needed: "16 h", postponed_to: nil, deleted_at: nil},
+  {name: "Dostosować flow usera", done: false, deadline: nil, project_id: 1, context_id: 11, time_needed: "2 h", postponed_to: nil, deleted_at: nil},
+  {name: "Zaprogramować zadanie", done: false, deadline: nil, project_id: 2, context_id: 11, time_needed: "16 h", postponed_to: nil, deleted_at: nil},
   {name: "Przeczytać treść zadania", done: false, deadline: nil, project_id: 2, context_id: 7, time_needed: "10 min", postponed_to: nil, deleted_at: nil},
-  {name: "Zainstalować devise", done: false, deadline: nil, project_id: 1, context_id: 5, time_needed: "1 h", postponed_to: nil, deleted_at: nil}
+  {name: "Zainstalować devise", done: false, deadline: nil, project_id: 1, context_id: 11, time_needed: "1 h", postponed_to: nil, deleted_at: nil}
 ])
