@@ -28,7 +28,7 @@ class ContextsController < ApplicationController
 
     respond_to do |format|
       if @context.save
-        format.html { redirect_to @context, notice: 'Context was successfully created.' }
+        format.html { redirect_to contexts_url, notice: 'Context was successfully created.' }
         format.json { render :show, status: :created, location: @context }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ContextsController < ApplicationController
   def update
     respond_to do |format|
       if @context.update(context_params)
-        format.html { redirect_to contexts_path, notice: 'Context was successfully updated.' }
+        format.html { redirect_to contexts_url, notice: 'Context was successfully updated.' }
         format.json { render :show, status: :ok, location: @context }
       else
         format.html { render :edit }

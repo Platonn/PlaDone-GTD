@@ -28,7 +28,7 @@ class ProjectCategoriesController < ApplicationController
 
     respond_to do |format|
       if @project_category.save
-        format.html { redirect_to @project_category, notice: 'Project category was successfully created.' }
+        format.html { redirect_to project_categories_url, notice: 'Project category was successfully created.' }
         format.json { render :show, status: :created, location: @project_category }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ProjectCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @project_category.update(project_category_params)
-        format.html { redirect_to @project_category, notice: 'Project category was successfully updated.' }
+        format.html { redirect_to project_categories_url, notice: 'Project category was successfully updated.' }
         format.json { render :show, status: :ok, location: @project_category }
       else
         format.html { render :edit }

@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.tasks-table {
+  font-size: 12px;
+}
+
 .done,
 .done a{
   color: lightgray;
@@ -17,7 +21,7 @@
 .done a.btn:hover,
 .done .context:hover
 {
-  color: gray;
+  color:  gray;
 }
 
 .done-check {
