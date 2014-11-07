@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :users
 
   has_many :tasks
   belongs_to :project_category

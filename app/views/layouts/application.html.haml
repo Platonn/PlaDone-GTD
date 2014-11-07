@@ -15,6 +15,7 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
+              %span.icon-bar
             = link_to 'PlaDone', root_url, class: 'navbar-brand'
 
           -#// Collect the nav links, forms, and other content for toggling
@@ -28,6 +29,8 @@
                 = link_to 'Projects', projects_path
               %li
                 = link_to 'Project Categories', project_categories_path
+              %li
+                = link_to 'Admin panel', users_path
 
             -# Temporary, until embedded login form is not finished
             .nav.navbar-nav.navbar-right
@@ -59,5 +62,7 @@
         %p.alert.alert-success= notice
       -if alert
         %p.alert.alert-info= alert
+      -if flash[:error]
+        %p.alert.alert-danger= flash[:error]
 
       = yield

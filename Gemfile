@@ -48,3 +48,6 @@ gem 'spring',        group: :development
 gem 'seed_dump', '~> 3.2.0'
 
 gem 'devise'
+
+gem 'cancan'
+gem 'role_model'
