@@ -44,4 +44,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#To dump database to seeds:
 gem 'seed_dump', '~> 3.2.0'
+
+gem 'devise'
