@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'tasks#index'
 
+  devise_for :users
+
   resources :contexts
 
   resources :project_categories
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'tasks/:id/toggle_done' => 'tasks#toggle_done'
 
-  devise_for :users
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
