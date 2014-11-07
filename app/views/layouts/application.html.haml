@@ -8,12 +8,12 @@
       %nav.navbar.navbar-default{role: 'navigation'}
         -#// Brand and toggle get grouped for better mobile display
         %div.navbar-header
-          -# %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
-          %span.sr-only Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
+          %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
           = link_to 'PlaDone', root_url, class: 'navbar-brand'
 
         -#// Collect the nav links, forms, and other content for toggling
@@ -27,6 +27,23 @@
               = link_to 'Projects', projects_path
             %li
               = link_to 'Project Categories', project_categories_path
+
+            -# spike: We will add login form here in a future:
+            -#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              .form-group
+                = f.label :email
+                = f.text_field :email, class: 'form-control', required: true, placeholder: "Email"
+                = error_span(@task[:name])
+              .form-group
+                = f.label :password
+                = f.text_field :password, class: 'form-control', required: true, placeholder: "Password", autocomplete: "off"
+                = error_span(@task[:name])
+              .form-group
+                -if devise_mapping.rememberable?
+                  .form-group
+                    = f.check_box :remember_me
+                    = f.label :remember_me
+              = f.submit "Log in", class: "btn btn-default"
 
       -if notice
         %p.alert.alert-success= notice

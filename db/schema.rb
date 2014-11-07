@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107154550) do
+ActiveRecord::Schema.define(version: 20141107185641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20141107154550) do
     t.string   "color"
     t.string   "icon"
     t.time     "deleted_at"
+    t.integer  "user_id"
   end
 
   create_table "project_categories", force: true do |t|
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141107154550) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.time     "deleted_at"
+    t.integer  "user_id"
   end
 
   create_table "projects", force: true do |t|
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 20141107154550) do
     t.datetime "deadline"
     t.time     "deleted_at"
     t.text     "notes"
+    t.integer  "user_id"
   end
 
   create_table "tasks", force: true do |t|
@@ -53,6 +56,7 @@ ActiveRecord::Schema.define(version: 20141107154550) do
     t.string   "time_needed"
     t.date     "postponed_to"
     t.time     "deleted_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
