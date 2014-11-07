@@ -12,7 +12,7 @@
   .form-group
     = f.label :project_category_id, class: 'control-label'
     .controls
-      = f.collection_select :project_category_id, ProjectCategory.all, :id, :name, {:include_blank => "No value", :required => true}
+      = f.collection_select :project_category_id, @active_project_categories, :id, :name, {:include_blank => "No value", :required => true}
     = error_span(@project[:project_category_id])
   .form-group
     = f.label :notes, class: 'control-label'
