@@ -8,12 +8,12 @@
       %nav.navbar.navbar-default{role: 'navigation'}
         -#// Brand and toggle get grouped for better mobile display
         %div.navbar-header
-          %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
+          -# %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
           = link_to 'PlaDone', root_url, class: 'navbar-brand'
 
         -#// Collect the nav links, forms, and other content for toggling
@@ -28,8 +28,9 @@
             %li
               = link_to 'Project Categories', project_categories_path
 
-
-      %p.notice= notice
-      %p.alert= alert
+      -if notice
+        %p.alert.alert-success= notice
+      -if alert
+        %p.alert.alert-info= alert
 
       = yield
