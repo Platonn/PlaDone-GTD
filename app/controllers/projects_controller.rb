@@ -1,10 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+  before_action :get_active_project_categories, only: [:new, :edit]
+
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.active
+    @projects = current_user.projects.active
   end
 
   # GET /projects/1
@@ -24,7 +26,8 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = current_user.projects.build(project_params)
+    @project.save
 
     respond_to do |format|
       if @project.save
@@ -66,7 +69,11 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = current_user.projects.find(params[:id])
+    end
+
+    def get_active_project_categories
+      @active_project_categories = current_user.project_categories.active
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

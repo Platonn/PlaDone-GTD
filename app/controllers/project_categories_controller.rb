@@ -4,7 +4,7 @@ class ProjectCategoriesController < ApplicationController
   # GET /project_categories
   # GET /project_categories.json
   def index
-    @project_categories = ProjectCategory.active
+    @project_categories = current_user.project_categories.active
   end
 
   # GET /project_categories/1
@@ -24,7 +24,8 @@ class ProjectCategoriesController < ApplicationController
   # POST /project_categories
   # POST /project_categories.json
   def create
-    @project_category = ProjectCategory.new(project_category_params)
+    @project_category = current_user.project_categories.build(project_category_params)
+    @project_category.save
 
     respond_to do |format|
       if @project_category.save
@@ -66,7 +67,7 @@ class ProjectCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project_category
-      @project_category = ProjectCategory.find(params[:id])
+      @project_category = current_user.project_categories.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.active.order(:done, :context_id, :deadline, updated_at: :desc, created_at: :desc)
+    @tasks = current_user.tasks.active.order(:done, :context_id, :deadline, updated_at: :desc, created_at: :desc)
   end
 
   # GET /tasks/1
@@ -41,7 +41,8 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
+    @task.save
 
     respond_to do |format|
       if @task.save
@@ -83,15 +84,15 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
     def get_active_contexts
-      @active_contexts = ::Context.active
+      @active_contexts = current_user.contexts.active
     end
 
     def get_active_projects
-      @active_projects = Project.active
+      @active_projects = current_user.projects.active
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

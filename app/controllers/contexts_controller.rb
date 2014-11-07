@@ -4,7 +4,7 @@ class ContextsController < ApplicationController
   # GET /contexts
   # GET /contexts.json
   def index
-    @contexts = Context.active
+    @contexts = current_user.contexts.active
   end
 
   # GET /contexts/1
@@ -24,7 +24,8 @@ class ContextsController < ApplicationController
   # POST /contexts
   # POST /contexts.json
   def create
-    @context = Context.new(context_params)
+    @context = current_user.contexts.build(context_params)
+    @context.save
 
     respond_to do |format|
       if @context.save
@@ -66,7 +67,7 @@ class ContextsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_context
-      @context = Context.find(params[:id])
+      @context = current_user.contexts.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
