@@ -1,5 +1,5 @@
 class ProjectCategoriesController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource
   before_action :set_project_category, only: [:show, :edit, :update, :destroy]
 
   # GET /project_categories
