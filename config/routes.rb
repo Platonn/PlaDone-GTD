@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'tasks#index'
+  root to: 'main_page#index', :controler => "main_page"
 
   devise_for :users
 
