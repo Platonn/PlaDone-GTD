@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   include RoleModel
   roles_attribute :roles_mask
   ### DO NOT CHANGE ORDER OF FOLLOWING ROLES! ALWAYS APPEND AT THE END:
-  roles :admin, :owner, :banned
+  roles :admin, :banned
 
 
 end

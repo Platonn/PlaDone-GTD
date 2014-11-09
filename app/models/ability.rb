@@ -31,13 +31,18 @@ class Ability
 
     user ||= User.new #guest user
 
-    if user.has_role? :admin
-      can :manage, User
-    end
-
     can :manage, Task, :user_id => user.id
     can :manage, Context, :user_id => user.id
     can :manage, Project, :user_id => user.id
     can :manage, ProjectCategory, :user_id => user.id
+
+    if user.has_role? :admin
+      can :manage, User
+    end
+
+    if user.has_role? :banned
+      cannot :manage, :all
+    end
+
   end
 end
