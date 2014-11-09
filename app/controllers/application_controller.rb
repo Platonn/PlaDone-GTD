@@ -9,12 +9,9 @@ class ApplicationController < ActionController::Base
   #Cancan try, spike
   #check_authorization
 
-  protect_from_forgery
   rescue_from CanCan::AccessDenied do |exception|
-    #redirect_to root_url
-    render 'public/404.html'
-    #flash[:error] = exception.message
-    #raise ActionController::RoutingError.new('Not Found')
+    redirect_to root_url
+    flash[:error] = exception.message
   end
 
 end
