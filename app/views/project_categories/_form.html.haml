@@ -1,8 +1,8 @@
-= form_for @user, html: { class: "form form-horizontal project_category" } do |f|
+= form_for @project_category, html: { class: "form form-horizontal project_category" } do |f|
   .form-group
-    = f.label :email, class: 'control-label'
+    = f.label :name, class: 'control-label'
     .controls
-      = f.text_field :email, class: 'form-control', required: true
-    = error_span(@user[:email])
+      = f.text_field :name, class: 'form-control', required: true
+    = error_span(@project_category[:name])
   = f.submit nil,class: 'btn btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), user_path, :class => 'btn btn-default'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), project_categories_path, :class => 'btn btn-default'
