@@ -4,5 +4,9 @@
     .controls
       = f.text_field :email, class: 'form-control', required: true
     = error_span(@user[:email])
+  .form-group
+    = label_tag :is_admin
+    .controls
+      = check_box_tag :is_admin, "admin", @user.has_role?(:admin), class: 'control-label'
   = f.submit nil,class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), user_path, :class => 'btn btn-default'

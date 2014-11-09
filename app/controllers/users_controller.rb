@@ -19,6 +19,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.build(user_params)
+
+    if params[:is_admin]
+      @user.roles << :admin unless @user.roles.include?(:admin)
+    else
+      @user.roles.delete(:admin) if @user.roles.include?(:admin)
+    end
+
     @user.save
 
     respond_to do |format|
@@ -36,6 +43,12 @@ class UsersController < ApplicationController
     #If password is blank, devise should not validate it, comparing with password_confirmation
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+
+    if params[:is_admin]
+      @user.roles << :admin unless @user.roles.include?(:admin)
+    else
+      @user.roles.delete(:admin) if @user.roles.include?(:admin)
+    end
 
     respond_to do |format|
       if @user.update(user_params)
@@ -73,6 +86,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :is_admin)
   end
 end
