@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  load_and_authorize_resource
   before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle_done]
   before_action :get_active_contexts, only: [:new, :edit]
   before_action :get_active_projects, only: [:new, :edit]
