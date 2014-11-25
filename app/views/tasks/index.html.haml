@@ -29,14 +29,9 @@
         %td= task.time_needed
         %td
           -if task.context.nil? == false
-            -if task.done == false
-              %a.context-label{style: "background-color: #{task.context.color}", :href => context_path(task.context) }
-                %span{class: "glyphicon glyphicon-#{task.context.icon}"}
-                = task.context.name
-            - else
-              %a.context-label{:href => context_path(task.context) }
-                %span{class: "glyphicon glyphicon-#{task.context.icon}"}
-                = task.context.name
+            %a.context-label{style: "background-color: #{task.context.color}", :href => context_path(task.context) }
+              %span{class: "glyphicon glyphicon-#{task.context.icon}"}
+              = task.context.name
         %td.datetime= task.postponed_to.datetime_without_seconds if task.postponed_to.nil? == false
         %td.datetime= task.created_at.datetime_without_seconds
         %td

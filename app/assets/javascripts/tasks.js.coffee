@@ -27,9 +27,10 @@ $ ->
       type: "GET"
       url:  "/tasks/#{dataAttr.taskId}/toggle_done"
       success:(data) ->
-        console.log "Toggle done success!"
-        toggleView()
-        return false
+        if data.success
+          console.log "Toggle done success!"
+          toggleView()
+          return false
       error:(data) ->
         alert "Could not toggle done! Try again later."
         console.log "Could not toggle done! Try again later."
