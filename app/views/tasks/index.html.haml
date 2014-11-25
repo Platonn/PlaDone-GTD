@@ -18,7 +18,6 @@
       %tr.task-row{:class => ('success done' if task.done)}
         %td.done-check
           %a{:href => "#", :data => {'task-id' => task.id, 'task-done' => task.done.to_s } }
-            -#{:href => "/tasks/#{task.id}/toggle_done"}
             -if task.done == true
               %span{:class => "glyphicon glyphicon-ok", 'aria-hidden' => "true"}
             -else

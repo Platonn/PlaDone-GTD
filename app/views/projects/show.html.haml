@@ -40,9 +40,9 @@
           %th=t '.actions', :default => t("helpers.actions")
       %tbody
         - @project.tasks.order(:done).order(:deadline).each do |task|
-          %tr{:class => ('success done' if task.done)}
+          %tr.task-row{:class => ('success done' if task.done)}
             %td.done-check
-              %a{:href => "/tasks/#{task.id}/toggle_done"}
+              %a{:href => "#", :data => {'task-id' => task.id, 'task-done' => task.done.to_s } }
                 -if task.done == true
                   %span{:class => "glyphicon glyphicon-ok"}
                 -else
