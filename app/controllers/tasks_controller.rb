@@ -28,14 +28,10 @@ class TasksController < ApplicationController
   # GET /tasks/1/done_toggle.json
   def toggle_done
     @task.done = !@task.done
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to tasks_path, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { redirect_to tasks_path, notice: 'Task was not updated.' }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      render :json => {:error => 0, :success => 1}
+    else
+      render :status => 500
     end
   end
 

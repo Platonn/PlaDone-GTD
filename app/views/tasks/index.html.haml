@@ -15,13 +15,14 @@
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @tasks.each do |task|
-      %tr{:class => ('success done' if task.done)}
+      %tr.task-row{:class => ('success done' if task.done)}
         %td.done-check
-          %a{:href => "/tasks/#{task.id}/toggle_done"}
+          %a{:href => "#", :data => {'task-id' => task.id, 'task-done' => task.done.to_s } }
+            -#{:href => "/tasks/#{task.id}/toggle_done"}
             -if task.done == true
-              %span{:class => "glyphicon glyphicon-ok"}
+              %span{:class => "glyphicon glyphicon-ok", 'aria-hidden' => "true"}
             -else
-              %span{:class => "glyphicon glyphicon-screenshot"}
+              %span{:class => "glyphicon glyphicon-screenshot", 'aria-hidden' => "true"}
         %td= link_to task.name, task_path(task)
         %td.datetime= task.deadline.datetime_without_seconds if task.deadline.nil? == false
         %td= link_to(task.project.name, project_path(task.project)) if task.project.nil? == false

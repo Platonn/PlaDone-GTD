@@ -51,3 +51,5 @@ gem 'devise'
 
 gem 'cancan'
 gem 'role_model'
+
+gem 'jquery-ui-rails'
