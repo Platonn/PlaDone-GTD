@@ -6,7 +6,9 @@
 
 #$.fn.child = (x) -> @children(x)[0]
 
-$ ->
+ready = ->
+
+  #alert "spike"
   # task done toggle
   $('.done-check > a').click ->
     dataAttr = $(this).data()
@@ -37,6 +39,9 @@ $ ->
         return false
 
     #console.log("task clicked!")
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
 
 ### spike:
 # Widget definition:
