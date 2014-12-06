@@ -18,5 +18,9 @@ class User < ActiveRecord::Base
   ### DO NOT CHANGE ORDER OF FOLLOWING ROLES! ALWAYS APPEND AT THE END:
   roles :admin, :banned
 
-
+  def owns?(object)
+    return  object.present? &&
+            object.respond_to?('user_id') &&
+            object.user_id == self.id
+  end
 end
