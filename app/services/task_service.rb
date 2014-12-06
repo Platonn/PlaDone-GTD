@@ -9,7 +9,7 @@ class TaskService
   end
 
   def get_active_tasks_of_current_user
-    get_tasks_of_user(@current_user)
+    get_active_tasks_of_user(@current_user)
   end
 
   def get_active_tasks_of_user(user)
