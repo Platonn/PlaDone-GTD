@@ -53,3 +53,5 @@ gem 'cancan'
 gem 'role_model'
 
 gem 'jquery-ui-rails'
+
+gem 'virtus'
