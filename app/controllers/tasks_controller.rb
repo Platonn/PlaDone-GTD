@@ -1,87 +1,74 @@
 class TasksController < ApplicationController
   #load_and_authorize_resource
+  before_action :set_task_service
   before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle_done]
   before_action :get_active_contexts, only: [:new, :edit]
   before_action :get_active_projects, only: [:new, :edit]
 
-  # GET /tasks
-  # GET /tasks.json
   def index
-    @tasks = current_user.tasks.active.order(:done, :context_id, :deadline, updated_at: :desc, created_at: :desc)
+    @tasks = @task_service.get_active_tasks_of_current_user
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
   def show
   end
 
-  # GET /tasks/new
   def new
     @task = Task.new
   end
 
-  # GET /tasks/1/edit
   def edit
   end
 
-  # GET /tasks/1/done_toggle
-  # GET /tasks/1/done_toggle.json
   def toggle_done
-    @task.done = !@task.done
-    if @task.save
+    if @task_service.toggle_done(@task)
       render :json => {:error => 0, :success => 1}
     else
       render :status => 500
     end
   end
 
-  # POST /tasks
-  # POST /tasks.json
   def create
-    @task = current_user.tasks.build(task_params)
-    @task.save
-
+    task_form = TaskForm.new(task_params)
     respond_to do |format|
-      if @task.save
+      if @task_service.create(task_form, current_user)
         format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
   def update
+    task_form = TaskForm.new(task_params)
     respond_to do |format|
-      if @task.update(task_params)
+      if @task_service.update(@task, task_form)
         format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
   def destroy
-    ###@task.destroy
     ###Soft delete:
-    @task.soft_delete
+    @task_service.soft_delete(@task)
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_task_service
+      @task_service = TaskService.new(current_user)
+    end
+
     def set_task
-      @task = current_user.tasks.find(params[:id])
+      @task = @task_service.get_task_by_id(params[:id])
+      if @task.nil?
+        raise ActionController::RoutingError.new('Given Task is null')
+      end
     end
 
     def get_active_contexts
