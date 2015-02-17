@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
             object.respond_to?('user_id') &&
             object.user_id == self.id
   end
+
+  def can_use?(object)
+    has_role?(:admin) || owns?(task)
+  end
 end
