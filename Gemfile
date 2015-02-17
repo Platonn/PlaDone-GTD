@@ -55,3 +55,7 @@ gem 'role_model'
 gem 'jquery-ui-rails'
 
 gem 'virtus'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
