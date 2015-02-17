@@ -25,6 +25,6 @@ class User < ActiveRecord::Base
   end
 
   def can_use?(object)
-    has_role?(:admin) || owns?(task)
+    has_role?(:admin) || owns?(object)
   end
 end
