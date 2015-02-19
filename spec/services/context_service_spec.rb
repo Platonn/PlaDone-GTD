@@ -36,6 +36,27 @@ describe ContextService, :type => :service do
       context.reload
       expect(context.deleted_at).to be_truthy
     end
+
+    describe "validations" do
+      describe "name" do
+        context "when blank" do
+          before do
+            @context_form = in_memory_context_form.clone
+            @context_form.name = ""
+          end
+          describe "#create" do
+            it "raises ValidationError" do
+              expect{ context_service.create(@context_form, user) }.to raise_error(ContextForm::ValidationError)
+            end
+          end
+          describe "#update" do
+            it "raises ValidationError" do
+              expect{ context_service.update(context.id, @context_form, user) }.to raise_error(ContextForm::ValidationError)
+            end
+          end
+        end
+      end
+    end
   end
 
   pending "#get_active_contexts_of" # check if ordering is proper
