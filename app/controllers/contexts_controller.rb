@@ -1,78 +1,74 @@
 class ContextsController < ApplicationController
   #load_and_authorize_resource
-  before_action :set_context, only: [:show, :edit, :update, :destroy]
+  before_action :set_context_id
+  before_action :set_context_service
+  before_action :set_context, only: [:show, :edit]
 
-  # GET /contexts
-  # GET /contexts.json
   def index
-    @contexts = current_user.contexts.active
+    @contexts = @context_service.get_active_contexts_of(current_user)
   end
 
-  # GET /contexts/1
-  # GET /contexts/1.json
   def show
   end
 
-  # GET /contexts/new
   def new
     @context = Context.new
   end
 
-  # GET /contexts/1/edit
   def edit
   end
 
-  # POST /contexts
-  # POST /contexts.json
   def create
-    @context = current_user.contexts.build(context_params)
-    @context.save
-
+    context_form = ContextForm.new(context_params)
     respond_to do |format|
-      if @context.save
+      if @context_service.create(context_form, current_user)
         format.html { redirect_to contexts_url, notice: 'Context was successfully created.' }
-        format.json { render :show, status: :created, location: @context }
       else
         format.html { render :new }
-        format.json { render json: @context.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /contexts/1
-  # PATCH/PUT /contexts/1.json
   def update
+    context_form = ContextForm.new(context_params)
     respond_to do |format|
-      if @context.update(context_params)
+      if @context_service.update(@context_id, context_form, current_user)
         format.html { redirect_to contexts_url, notice: 'Context was successfully updated.' }
-        format.json { render :show, status: :ok, location: @context }
       else
         format.html { render :edit }
-        format.json { render json: @context.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /contexts/1
-  # DELETE /contexts/1.json
   def destroy
-    ###@context.destroy
-    ### soft delete
-    @context.soft_delete
+    ###Soft delete:
+    @context_service.soft_delete(@context_id, current_user)
     respond_to do |format|
       format.html { redirect_to contexts_url, notice: 'Context was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_context
-      @context = current_user.contexts.find(params[:id])
-    end
+private
+  # Use callbacks to share common setup or constraints between actions.
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def context_params
-      params.require(:context).permit(:name, :color, :icon)
-    end
+  def set_context_service
+    @context_service = ContextService.new
+  end
+
+  def set_context_id
+    @context_id = params[:id]
+  end
+
+  def set_context
+    @context = @context_service.get_context_by_id(@context_id, current_user)
+    raise ActionController::RoutingError.new('Given Context is null') if @context.nil?
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def context_params
+    params.require(:context).permit(:name, :color, :icon)
+  end
 end
+
+
+
