@@ -45,6 +45,9 @@ gem 'jquery-ui-rails'
 
 gem 'virtus'
 
+gem 'sunspot'
+gem 'sunspot_solr'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
