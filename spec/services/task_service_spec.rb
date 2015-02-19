@@ -24,7 +24,7 @@ describe TaskService, :type => :service do
     end
 
     it "#update" do
-      task_form = in_memory_task_form
+      task_form = in_memory_task_form.clone
       task_form.name = "name123"
       task_service.update(task.id, task_form, user)
       task.reload
@@ -58,6 +58,27 @@ describe TaskService, :type => :service do
       task_service.soft_delete(task.id, user)
       task.reload
       expect(task.deleted_at).to be_truthy
+    end
+
+    describe "validations" do
+      describe "name" do
+        context "when blank" do
+          before do
+            @task_form = in_memory_task_form.clone
+            @task_form.name = ""
+          end
+            describe "#create" do
+              it "raises ValidationError" do
+                expect{ task_service.create(@task_form, user) }.to raise_error(TaskForm::ValidationError)
+              end
+            end
+          describe "#update" do
+            it "raises ValidationError" do
+              expect{ task_service.update(task.id, @task_form, user) }.to raise_error(TaskForm::ValidationError)
+            end
+          end
+        end
+      end
     end
   end
 
