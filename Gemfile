@@ -49,3 +49,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
 gem 'spork-rails'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
