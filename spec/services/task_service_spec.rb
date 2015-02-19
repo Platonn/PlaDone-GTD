@@ -59,6 +59,7 @@ describe TaskService, :type => :service do
       task.reload
       expect(task.deleted_at).to be_truthy
     end
-
   end
+
+  pending "#get_active_tasks_of" # check if ordering is proper
 end
