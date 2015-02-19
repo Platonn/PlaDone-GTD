@@ -36,6 +36,27 @@ describe ProjectCategoryService, :type => :service do
       project_category.reload
       expect(project_category.deleted_at).to be_truthy
     end
+
+    describe "validations" do
+      describe "name" do
+        context "when blank" do
+          before do
+            @project_category_form = in_memory_project_category_form.clone
+            @project_category_form.name = ""
+          end
+          describe "#create" do
+            it "raises ValidationError" do
+              expect{ project_category_service.create(@project_category_form, user) }.to raise_error(ProjectCategoryForm::ValidationError)
+            end
+          end
+          describe "#update" do
+            it "raises ValidationError" do
+              expect{ project_category_service.update(project_category.id, @project_category_form, user) }.to raise_error(ProjectCategoryForm::ValidationError)
+            end
+          end
+        end
+      end
+    end
   end
 
   pending "#get_active_project_categories_of" # check if ordering is proper
