@@ -36,7 +36,28 @@ describe ProjectService, :type => :service do
       project.reload
       expect(project.deleted_at).to be_truthy
     end
+
+    describe "validations" do
+      describe "name" do
+        context "when blank" do
+          before do
+            @project_form = in_memory_project_form.clone
+            @project_form.name = ""
+          end
+          describe "#create" do
+            it "raises ValidationError" do
+              expect{ project_service.create(@project_form, user) }.to raise_error(ProjectForm::ValidationError)
+            end
+          end
+          describe "#update" do
+            it "raises ValidationError" do
+              expect{ project_service.update(project.id, @project_form, user) }.to raise_error(ProjectForm::ValidationError)
+            end
+          end
+        end
+      end
+    end
   end
 
-  pending "#get_active_projects_of" # check if ordering is proper
+ pending "#get_active_projects_of" # check if ordering is proper
 end
