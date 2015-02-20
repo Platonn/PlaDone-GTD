@@ -27,6 +27,8 @@ describe ProjectService, :type => :service do
         expect(project.persisted?).to eq true
       end
     end
+
+    pending "calls project_log_service.project_created"
   end
 
   context("when project created") do
@@ -45,10 +47,12 @@ describe ProjectService, :type => :service do
           @project_form = in_memory_project_form.clone
           @project_form.name = ""
         end
+
         it "raises ValidationError" do
           expect{ project_service.update(project.id, @project_form, user) }.to raise_error(ProjectForm::ValidationError)
         end
       end
+
       context "when new name not blank" do
         it "updates name" do
           project_form = in_memory_project_form
@@ -58,6 +62,8 @@ describe ProjectService, :type => :service do
           expect(project.name).to eq "name123"
         end
       end
+
+      pending "calls project_log_service.project_updated"
     end
 
     describe "#soft_delete" do
@@ -66,6 +72,8 @@ describe ProjectService, :type => :service do
         project.reload
         expect(project.deleted_at).to be_truthy
       end
+
+      pending "calls project_log_service.project_deleted"
     end
   end
 
