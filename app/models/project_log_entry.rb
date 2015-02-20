@@ -1,5 +1,5 @@
 class ProjectLogEntry < ActiveRecord::Base
-  enum activity_type [:project_created,
+  enum activity_type: [:project_created,
                       :project_deleted,
                       :project_closed,
                       :project_reopened,

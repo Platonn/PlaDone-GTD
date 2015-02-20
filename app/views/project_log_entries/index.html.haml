@@ -1,25 +1,31 @@
-%h1 Listing project_log_entries
-
-%table
-  %tr
-    %th Project
-    %th Task
-    %th User
-    %th Activity type
-    %th
-    %th
-    %th
-
-  - @project_log_entries.each do |project_log_entry|
+- model_class = ProjectLogEntry
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
     %tr
-      %td= project_log_entry.project_id
-      %td= project_log_entry.task_id
-      %td= project_log_entry.user_id
-      %td= project_log_entry.activity_type
-      %td= link_to 'Show', project_log_entry
-      %td= link_to 'Edit', edit_project_log_entry_path(project_log_entry)
-      %td= link_to 'Destroy', project_log_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:project_id)
+      %th= model_class.human_attribute_name(:user_id)
+      %th= model_class.human_attribute_name(:activity_type)
+      %th= model_class.human_attribute_name(:task_id)
+      %th= model_class.human_attribute_name(:previous_value)
+      %th= model_class.human_attribute_name(:new_value)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @project_log_entries.each do |project_log_entry|
+      %tr
+        %td= link_to project_log_entry.id, project_log_entry_path(project_log_entry)
+        %td= project_log_entry.project_id
+        %td= project_log_entry.user_id
+        %td= project_log_entry.activity_type
+        %td= project_log_entry.task_id
+        %td= project_log_entry.previous_value
+        %td= project_log_entry.new_value
+        %td=l project_log_entry.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_log_entry_path(project_log_entry), :class => 'btn btn-default btn-xs'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), project_log_entry_path(project_log_entry), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
 
-%br
-
-= link_to 'New Project log entry', new_project_log_entry_path
+= link_to t('.new', :default => t("helpers.links.new")), new_project_log_entry_path, :class => 'btn btn-primary'

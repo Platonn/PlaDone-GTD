@@ -1,7 +1,4 @@
-%h1 Editing project_log_entry
-
-= render 'form'
-
-= link_to 'Show', @project_log_entry
-\|
-= link_to 'Back', project_log_entries_path
+- model_class = ProjectLogEntry
+.page-header
+  %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+= render :partial => "form"

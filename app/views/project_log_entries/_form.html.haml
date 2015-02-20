@@ -1,22 +1,33 @@
-= form_for @project_log_entry do |f|
-  - if @project_log_entry.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@project_log_entry.errors.count, "error")} prohibited this project_log_entry from being saved:"
-      %ul
-        - @project_log_entry.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :project_id
-    = f.number_field :project_id
-  .field
-    = f.label :task_id
-    = f.number_field :task_id
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :activity_type
-    = f.number_field :activity_type
-  .actions
-    = f.submit 'Save'
+= form_for @project_log_entry, html: { class: "form form-horizontal project_log_entry" } do |f|
+  .form-group
+    = f.label :project_id, class: 'control-label'
+    .controls
+      = f.text_field :project_id, class: 'form-control', required: true
+    = error_span(@project_log_entry[:project_id])
+  .form-group
+    = f.label :user_id, class: 'control-label'
+    .controls
+      = f.text_field :user_id, class: 'form-control', required: true
+    = error_span(@project_log_entry[:user_id])
+  .form-group
+    = f.label :activity_type, class: 'control-label'
+    .controls
+      = f.text_field :activity_type, class: 'form-control', required: true
+    = error_span(@project_log_entry[:activity_type])
+  .form-group
+    = f.label :task_id, class: 'control-label'
+    .controls
+      = f.text_field :task_id, class: 'form-control', required: true
+    = error_span(@project_log_entry[:task_id])
+  .form-group
+    = f.label :previous_value, class: 'control-label'
+    .controls
+      = f.text_field :previous_value, class: 'form-control', required: true
+    = error_span(@project_log_entry[:previous_value])
+  .form-group
+    = f.label :new_value, class: 'control-label'
+    .controls
+      = f.text_field :new_value, class: 'form-control', required: true
+    = error_span(@project_log_entry[:new_value])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), project_log_entries_path, :class => 'btn btn-default'
