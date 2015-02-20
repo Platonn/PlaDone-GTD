@@ -54,7 +54,6 @@ group :development, :test do
 end
 gem 'spork-rails'
 
-group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
-end
+#spike - potem to wylaczyc na prdukcji!
+gem 'better_errors'
+gem 'binding_of_caller'
