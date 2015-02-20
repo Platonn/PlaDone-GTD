@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
+  root to: 'main_page#index', :controler => "main_page"
+  
+  devise_for :users
+  
+  scope "/admin" do
+    resources :users, :controller => "users"  # MUST BE under 'devise_for :users'! It lets CRUD opera
+  end
+
+  resources :tasks
+  resources :contexts
+  resources :projects
+  resources :project_categories
+  resources :project_log_entries
+
+  get 'tasks/:id/toggle_done' => 'tasks#toggle_done'
+  #get 'admin/users' => 'users#index'
+
+
+
+# The priority is based upon order of creation: first created > highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
@@ -26,13 +45,13 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  # Example resource route with sub-resources:
+  # Example resource route with subresources:
   #   resources :products do
   #     resources :comments, :sales
   #     resource :seller
   #   end
 
-  # Example resource route with more complex sub-resources:
+  # Example resource route with more complex subresources:
   #   resources :products do
   #     resources :comments
   #     resources :sales do

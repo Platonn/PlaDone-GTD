@@ -14,10 +14,21 @@ module PlaDone
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Warsaw' # TODO - when users will appear - everyone will have his own timezone
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    ### Require core classes extensions in specified folder:
+    Dir[Rails.root.join('lib', 'core_ext', '*.rb')].each {|l| require l}
+    Dir[Rails.root.join('lib', 'modules', '*.rb')].each {|l| require l}
+
+    ### Generate assets in less:
+    config.app_generators.stylesheet_engine :less
+
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
