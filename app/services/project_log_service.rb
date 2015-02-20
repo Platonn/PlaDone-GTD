@@ -12,16 +12,17 @@ class ProjectLogService
   end
 
   def project_updated(project_id, user_id, previous_attrs, new_attrs)
-    if previous_attrs[:name] != new_attrs[:name]
+    unless equal_or_both_blank?(previous_attrs[:name], new_attrs[:name])
       project_name_changed(project_id, user_id, previous_attrs[:name], new_attrs[:name])
     end
-    if previous_attrs[:project_category_id] != new_attrs[:project_category_id]
+    unless equal_or_both_blank?(previous_attrs[:project_category_id], new_attrs[:project_category_id])
       project_category_changed(project_id, user_id, previous_attrs[:project_category_id], new_attrs[:project_category_id])
+      raise StandardError [previous_attrs, new_attrs]
     end
-    if previous_attrs[:notes] != new_attrs[:notes]
+    unless equal_or_both_blank?(previous_attrs[:notes],new_attrs[:notes])
       project_notes_changed(project_id, user_id, previous_attrs[:notes], new_attrs[:notes])
     end
-    if previous_attrs[:deadline] != new_attrs[:deadline]
+    unless equal_or_both_blank?(previous_attrs[:deadline], new_attrs[:deadline])
       project_deadline_changed(project_id, user_id, previous_attrs[:deadline], new_attrs[:deadline])
     end
   end
@@ -92,4 +93,8 @@ class ProjectLogService
         :new_value => new_deadline)
   end
 
+private
+  def equal_or_both_blank?(prev, new)
+    prev == new || (prev.blank? && new.blank?)
+  end
 end
