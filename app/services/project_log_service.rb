@@ -65,7 +65,7 @@ class ProjectLogService
       :new_value => new_name)
   end
 
-  def project_category_changed(project_id, user_id, previous_attrs_category_id, updated_project_category_id)
+  def project_category_changed(project_id, user_id, previous_project_category_id, updated_project_category_id)
     ProjectLogEntry.create!(
         :project_id => project_id,
         :user_id => user_id,
