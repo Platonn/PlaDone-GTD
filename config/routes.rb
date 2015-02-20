@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :project_log_entries
+
   root to: 'main_page#index', :controler => "main_page"
 
   devise_for :users

@@ -1,0 +1,22 @@
+= form_for @project_log_entry do |f|
+  - if @project_log_entry.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@project_log_entry.errors.count, "error")} prohibited this project_log_entry from being saved:"
+      %ul
+        - @project_log_entry.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :project_id
+    = f.number_field :project_id
+  .field
+    = f.label :task_id
+    = f.number_field :task_id
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :activity_type
+    = f.number_field :activity_type
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Project:
+  = @project_log_entry.project_id
+%p
+  %b Task:
+  = @project_log_entry.task_id
+%p
+  %b User:
+  = @project_log_entry.user_id
+%p
+  %b Activity type:
+  = @project_log_entry.activity_type
+
+= link_to 'Edit', edit_project_log_entry_path(@project_log_entry)
+\|
+= link_to 'Back', project_log_entries_path

@@ -1,0 +1,25 @@
+%h1 Listing project_log_entries
+
+%table
+  %tr
+    %th Project
+    %th Task
+    %th User
+    %th Activity type
+    %th
+    %th
+    %th
+
+  - @project_log_entries.each do |project_log_entry|
+    %tr
+      %td= project_log_entry.project_id
+      %td= project_log_entry.task_id
+      %td= project_log_entry.user_id
+      %td= project_log_entry.activity_type
+      %td= link_to 'Show', project_log_entry
+      %td= link_to 'Edit', edit_project_log_entry_path(project_log_entry)
+      %td= link_to 'Destroy', project_log_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Project log entry', new_project_log_entry_path
