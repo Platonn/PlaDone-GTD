@@ -17,17 +17,17 @@
   .form-group
     = f.label :task_id, class: 'control-label'
     .controls
-      = f.text_field :task_id, class: 'form-control', required: true
+      = f.text_field :task_id, class: 'form-control'
     = error_span(@project_log_entry[:task_id])
   .form-group
     = f.label :previous_value, class: 'control-label'
     .controls
-      = f.text_field :previous_value, class: 'form-control', required: true
+      = f.text_field :previous_value, class: 'form-control'
     = error_span(@project_log_entry[:previous_value])
   .form-group
     = f.label :new_value, class: 'control-label'
     .controls
-      = f.text_field :new_value, class: 'form-control', required: true
+      = f.text_field :new_value, class: 'form-control'
     = error_span(@project_log_entry[:new_value])
   = f.submit nil,class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), project_log_entries_path, :class => 'btn btn-default'

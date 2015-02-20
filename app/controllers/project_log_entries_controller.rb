@@ -43,6 +43,6 @@ class ProjectLogEntriesController < ApplicationController
     end
   
     def project_log_entry_params
-      params.require(:project_log_entry).permit(:project_id, :task_id, :user_id, :activity_type)
+      params.require(:project_log_entry).permit(:project_id, :task_id, :user_id, :activity_type, :previous_value, :new_value)
     end
   end
