@@ -17,10 +17,10 @@
     - @project_log_entries.each do |project_log_entry|
       %tr
         %td= link_to project_log_entry.id, project_log_entry_path(project_log_entry)
-        %td= project_log_entry.project_id
-        %td= project_log_entry.user_id
+        %td= project_log_entry.project.name
+        %td= project_log_entry.user.email
         %td= project_log_entry.activity_type
-        %td= project_log_entry.task_id
+        %td= project_log_entry.task.name
         %td= project_log_entry.previous_value
         %td= project_log_entry.new_value
         %td=l project_log_entry.created_at
