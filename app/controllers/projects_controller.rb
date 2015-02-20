@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project_log_entries = @project_service.get_history(@project_id)
   end
 
   def new
@@ -23,7 +24,7 @@ class ProjectsController < ApplicationController
     project_form = ProjectForm.new(project_params)
     respond_to do |format|
       if @project_service.create(project_form, current_user)
-        format.html { redirect_to projects_url, notice: 'Project was successfully created.' }
+        format.html { redirect_to project_url(@project_id), notice: 'Project was successfully created.' }
       else
         format.html { render :new }
       end
@@ -34,7 +35,7 @@ class ProjectsController < ApplicationController
     project_form = ProjectForm.new(project_params)
     respond_to do |format|
       if @project_service.update(@project_id, project_form, current_user)
-        format.html { redirect_to projects_url, notice: 'Project was successfully updated.' }
+        format.html { redirect_to project_url(@project_id), notice: 'Project was successfully updated.' }
       else
         format.html { render :edit }
       end
