@@ -1,16 +1,28 @@
 class ProjectLogService
-  def project_updated(project_id, user_id, previous_project, updated_project)
-    if previous_project.name != updated_project.name
-      project_name_changed(project_id, user_id, previous_project.name, updated_project.name)
+  def get_history(project_id, limit)
+    results = ProjectLogEntry
+      .where(["project_id = :project_id", { project_id: project_id }])
+      .order(created_at: :desc)
+
+    if limit.nil?
+      results
+    else
+      results.limit(limit)
     end
-    if previous_project.project_category_id != updated_project.project_category_id
-      project_category_changed(project_id, user_id, previous_project.project_category_id, updated_project.project_category_id)
+  end
+
+  def project_updated(project_id, user_id, previous_attrs, new_attrs)
+    if previous_attrs[:name] != new_attrs[:name]
+      project_name_changed(project_id, user_id, previous_attrs[:name], new_attrs[:name])
     end
-    if previous_project.notes != updated_project.notes
-      project_notes_changed(project_id, user_id, previous_project.notes, updated_project.notes)
+    if previous_attrs[:project_category_id] != new_attrs[:project_category_id]
+      project_category_changed(project_id, user_id, previous_attrs[:project_category_id], new_attrs[:project_category_id])
     end
-    if previous_project.deadline != updated_project.deadline
-      project_deadline_changed(project_id, user_id, previous_project.deadline, updated_project.deadline)
+    if previous_attrs[:notes] != new_attrs[:notes]
+      project_notes_changed(project_id, user_id, previous_attrs[:notes], new_attrs[:notes])
+    end
+    if previous_attrs[:deadline] != new_attrs[:deadline]
+      project_deadline_changed(project_id, user_id, previous_attrs[:deadline], new_attrs[:deadline])
     end
   end
 
@@ -53,7 +65,7 @@ class ProjectLogService
       :new_value => new_name)
   end
 
-  def project_category_changed(project_id, user_id, previous_project_category_id, updated_project_category_id)
+  def project_category_changed(project_id, user_id, previous_attrs_category_id, updated_project_category_id)
     ProjectLogEntry.create!(
         :project_id => project_id,
         :user_id => user_id,
@@ -81,24 +93,3 @@ class ProjectLogService
   end
 
 end
-
-=begin
-t.integer  "project_id",     null: false
-t.integer  "user_id",        null: false
-t.integer  "activity_type",  null: false
-t.integer  "task_id"
-t.string   "previous_value"
-t.string   "new_value"
-t.datetime "created_at"
-t.datetime "updated_at"
-
-  enum activity_type: [:project_created,
-                       :project_deleted,
-                       :project_closed,
-                       :project_reopened,
-                       :project_name_changed,
-                       :project_category_changed,
-                        :project_notes_changed,
-                        :project_deadline_changed
-  ]
-=end
