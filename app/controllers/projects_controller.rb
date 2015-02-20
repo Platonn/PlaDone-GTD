@@ -23,8 +23,9 @@ class ProjectsController < ApplicationController
   def create
     project_form = ProjectForm.new(project_params)
     respond_to do |format|
-      if @project_service.create(project_form, current_user)
-        format.html { redirect_to project_url(@project_id), notice: 'Project was successfully created.' }
+      project = @project_service.create(project_form, current_user)
+      if project
+        format.html { redirect_to project_url(project.id), notice: 'Project was successfully created.' }
       else
         format.html { render :new }
       end
