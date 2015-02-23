@@ -17,7 +17,6 @@ class ProjectLogService
     end
     unless equal_or_both_blank?(previous_attrs[:project_category_id], new_attrs[:project_category_id])
       project_category_changed(project_id, user_id, previous_attrs[:project_category_id], new_attrs[:project_category_id])
-      raise StandardError [previous_attrs, new_attrs]
     end
     unless equal_or_both_blank?(previous_attrs[:notes],new_attrs[:notes])
       project_notes_changed(project_id, user_id, previous_attrs[:notes], new_attrs[:notes])
